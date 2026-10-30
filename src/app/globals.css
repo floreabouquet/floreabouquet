@@ -33,8 +33,51 @@ body {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-8px) rotate(0.8deg);
+    transform: translateY(-8px) rotate(1deg);
   }
+}
+
+@keyframes floatPetal1 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  50% {
+    transform: translate(-10px, -14px) rotate(12deg);
+  }
+}
+
+@keyframes floatPetal2 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  50% {
+    transform: translate(12px, -10px) rotate(-15deg);
+  }
+}
+
+@keyframes floatPetal3 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  50% {
+    transform: translate(-8px, 10px) rotate(8deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-petal-1 {
+  animation: floatPetal1 5s ease-in-out infinite;
+}
+
+.animate-petal-2 {
+  animation: floatPetal2 6.5s ease-in-out infinite;
+}
+
+.animate-petal-3 {
+  animation: floatPetal3 5.5s ease-in-out infinite;
 }
 
 @keyframes pulseSubtle {

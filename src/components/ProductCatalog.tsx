@@ -39,31 +39,31 @@ export function ProductCatalog({
   });
 
   return (
-    <section id="catalog" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="catalog" className="py-12 sm:py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header Katalog */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-stone-200/80">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8 sm:mb-10 pb-5 border-b border-stone-200/80">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-widest text-rose-800 block mb-1">
+          <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-[#E60067] block mb-1">
             Katalog Sampel Terkurasi
           </span>
-          <h2 className="text-3xl font-serif font-medium text-stone-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-serif font-medium text-stone-900 tracking-tight">
             Koleksi Buket Bunga Buatan (Artificial)
           </h2>
-          <p className="text-xs text-stone-500 mt-1">
-            Sampel desain buket yang siap dipesan langsung atau dikustomisasi warnanya
+          <p className="text-xs text-stone-500 mt-1 max-w-xl">
+            Pilihan desain buket siap kirim atau custom warna bunganya. Tahan selamanya tanpa khawatir layu.
           </p>
         </div>
 
-        {/* Tab Filter Taktil */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none">
+        {/* Tab Filter Taktil Mobile Scrollable */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
           {filterTabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => onCategoryChange(tab.id)}
-              className={`px-3.5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-150 ${
+              className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-150 cursor-pointer ${
                 selectedCategory === tab.id
-                  ? 'bg-[#E60067] text-white shadow-2xs'
-                  : 'bg-white text-stone-600 border border-stone-200 hover:border-rose-300 hover:text-rose-700'
+                  ? 'bg-[#E60067] text-white shadow-sm'
+                  : 'bg-white text-stone-600 border border-stone-200/90 hover:border-stone-400 hover:text-stone-900'
               }`}
             >
               {tab.label}
@@ -72,9 +72,9 @@ export function ProductCatalog({
         </div>
       </div>
 
-      {/* Grid Kartu Sampel (Ramping 4 Kartu) */}
+      {/* Grid Kartu Sampel (Responsif 1 kol mobile -> 2 sm -> 4 desktop) */}
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}

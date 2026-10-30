@@ -66,16 +66,16 @@ export function ProductCard({ product, onQuickView, onOrderDirect }: ProductCard
       {/* Info Rangkaian Buket */}
       <div className="flex flex-col flex-grow">
         <div className="flex items-center justify-between text-[11px] text-stone-500 font-medium mb-1">
-          <span className="uppercase tracking-wider text-rose-800 font-semibold">{product.categoryLabel}</span>
-          <span>{product.durability}</span>
+          <span className="uppercase tracking-wider text-[#E60067] font-semibold">{product.categoryLabel}</span>
+          <span className="text-stone-600 bg-stone-100 px-1.5 py-0.5 rounded text-[10px]">{product.durability}</span>
         </div>
 
-        <h3 className="text-base font-serif font-medium text-stone-900 group-hover:text-rose-800 transition-colors line-clamp-1 mb-1">
+        <h3 className="text-base font-serif font-medium text-stone-900 group-hover:text-[#E60067] transition-colors line-clamp-1 mb-1">
           {product.name}
         </h3>
 
         <p className="text-xs text-stone-500 line-clamp-1 mb-3">
-          Bahan: {product.material}
+          {product.description}
         </p>
 
         {/* Harga */}
@@ -91,13 +91,21 @@ export function ProductCard({ product, onQuickView, onOrderDirect }: ProductCard
         </div>
 
         {/* Tombol Aksi Taktil */}
-        <div className="mt-auto pt-1">
+        <div className="mt-auto pt-1 flex items-center gap-2">
           <button
             onClick={() => onOrderDirect(product)}
-            className="w-full py-2.5 px-3 rounded-lg bg-[#E60067] hover:bg-[#CC005A] text-white text-xs font-semibold tracking-wide flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.98] shadow-2xs"
+            className="flex-1 py-2.5 px-3 rounded-xl bg-[#E60067] hover:bg-[#CC005A] text-white text-xs font-semibold tracking-wide flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-[0.98] shadow-2xs cursor-pointer"
           >
             <MessageCircle className="w-3.5 h-3.5" />
-            <span>Pesan via WhatsApp</span>
+            <span>Pesan WA</span>
+          </button>
+          
+          <button
+            onClick={() => onQuickView(product)}
+            className="sm:hidden p-2.5 rounded-xl border border-stone-200 text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition active:scale-95"
+            aria-label="Lihat Detail"
+          >
+            <Eye className="w-4 h-4" />
           </button>
         </div>
       </div>
