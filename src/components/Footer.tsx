@@ -45,7 +45,7 @@ export function Footer() {
               <li><a href="#catalog" className="hover:text-white transition">Buket Silk Peony & Rose</a></li>
               <li><a href="#catalog" className="hover:text-white transition">Everlasting Bloom Box</a></li>
               <li><a href="#catalog" className="hover:text-white transition">Buket Bunga Wisuda</a></li>
-              <li><a href="#bespoke-custom" className="hover:text-white transition">Custom Warna Wrap & Pita</a></li>
+              <li><a href="#delivery-info" className="hover:text-white transition">Custom Warna Wrap & Pita</a></li>
             </ul>
           </div>
 

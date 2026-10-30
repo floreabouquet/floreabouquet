@@ -5,7 +5,6 @@ import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/HeroSection';
 import { CategoryBento } from '@/components/CategoryBento';
 import { ProductCatalog } from '@/components/ProductCatalog';
-import { BespokeCustomSection } from '@/components/BespokeCustomSection';
 import { StudioAndDeliverySection } from '@/components/StudioAndDeliverySection';
 import { FloatingWhatsAppButton } from '@/components/FloatingWhatsAppButton';
 import { Footer } from '@/components/Footer';
@@ -36,8 +35,6 @@ export default function Home() {
         />
 
         <StudioAndDeliverySection />
-
-        <BespokeCustomSection />
       </main>
 
       <FloatingWhatsAppButton />

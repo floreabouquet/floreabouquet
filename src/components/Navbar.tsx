@@ -19,9 +19,7 @@ export function Navbar({ onSearchChange, activeCategory = 'all', onSelectCategor
   // Menu navigasi yang bersih & relevan untuk website florist profesional
   const navLinks = [
     { label: 'Katalog Bunga', href: '#catalog', type: 'scroll' },
-    { label: 'Cara Pesan & Kirim', href: '#delivery-info', type: 'scroll' },
-    { label: 'Custom Order', href: '#bespoke-custom', type: 'scroll' },
-    { label: 'Tentang Studio', href: '#about-studio', type: 'scroll' },
+    { label: 'Tentang Studio & Pengiriman', href: '#delivery-info', type: 'scroll' },
   ];
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
