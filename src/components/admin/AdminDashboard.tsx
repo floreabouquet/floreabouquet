@@ -22,7 +22,7 @@ import { Product, getCategoryLabel } from '@/data/products';
 import ProductFormModal from './ProductFormModal';
 
 export default function AdminDashboard() {
-  const { products, logout, addProduct, updateProduct, deleteProduct, resetToDefault } = useAdmin();
+  const { products, isLoading, logout, addProduct, updateProduct, deleteProduct, refreshProducts } = useAdmin();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -46,20 +46,29 @@ export default function AdminDashboard() {
     setIsModalOpen(true);
   };
 
-  const handleSaveProduct = (productData: any) => {
-    if (editingProduct) {
-      updateProduct(editingProduct.id, productData);
-      showToast(`Berhasil memperbarui "${productData.name}"`);
-    } else {
-      addProduct(productData);
-      showToast(`Berhasil menambahkan mahakarya baru!`);
+  const handleSaveProduct = async (productData: any) => {
+    try {
+      if (editingProduct) {
+        await updateProduct(editingProduct.id, productData);
+        showToast(`Berhasil memperbarui "${productData.name}" di Supabase`);
+      } else {
+        await addProduct(productData);
+        showToast(`Berhasil menambahkan mahakarya baru ke Supabase!`);
+      }
+      setIsModalOpen(false);
+    } catch {
+      showToast('Terjadi kesalahan saat menyimpan ke Supabase');
     }
   };
 
-  const handleDeleteProduct = (id: string, name: string) => {
-    deleteProduct(id);
-    setDeleteConfirmId(null);
-    showToast(`"${name}" telah dihapus.`);
+  const handleDeleteProduct = async (id: string, name: string) => {
+    try {
+      await deleteProduct(id);
+      setDeleteConfirmId(null);
+      showToast(`"${name}" telah dihapus dari Supabase.`);
+    } catch {
+      showToast('Gagal menghapus produk dari Supabase.');
+    }
   };
 
   const filteredProducts = products.filter((p) => {
@@ -168,13 +177,16 @@ export default function AdminDashboard() {
               <TrendingUp className="w-4 h-4 text-emerald-600" />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-xs text-stone-600">Local Browser Storage</span>
+              <span className="text-xs font-medium text-emerald-600">Supabase Connected</span>
               <button
-                onClick={resetToDefault}
+                onClick={async () => {
+                  await refreshProducts();
+                  showToast('Data berhasil di-refresh dari Supabase');
+                }}
                 className="text-[11px] text-stone-500 hover:text-stone-800 flex items-center gap-1 hover:underline cursor-pointer"
-                title="Kembalikan data katalog ke data awal produk bawaan"
+                title="Muat ulang data produk dari Supabase"
               >
-                <RotateCcw className="w-3 h-3" /> Reset Bawaan
+                <RotateCcw className="w-3 h-3" /> Refresh
               </button>
             </div>
           </div>
@@ -210,10 +222,9 @@ export default function AdminDashboard() {
             <SlidersHorizontal className="w-3.5 h-3.5 text-stone-400 shrink-0 mr-1" />
             {[
               { id: 'all', label: 'Semua Koleksi' },
-              { id: 'artificial', label: 'Artificial Buket' },
-              { id: 'bloombox', label: 'Bloom Box' },
-              { id: 'graduation', label: 'Wisuda' },
-              { id: 'preserved', label: 'Preserved' },
+              { id: 'artistic', label: 'Buket Bunga Artistik' },
+              { id: 'celebration', label: 'Perayaan & Momen' },
+              { id: 'personal', label: 'Personalisasi & Hadiah' },
             ].map((cat) => (
               <button
                 key={cat.id}

@@ -1,29 +1,48 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Product, PRODUCTS as INITIAL_PRODUCTS } from '@/data/products';
+import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
+import { Product } from '@/data/products';
+import {
+  getProducts as fetchProductsFromSupabase,
+  createProduct as createProductInSupabase,
+  updateProduct as updateProductInSupabase,
+  deleteProduct as deleteProductInSupabase,
+} from '@/lib/supabase/products';
 
 interface AdminContextType {
   products: Product[];
+  isLoading: boolean;
   isAuthenticated: boolean;
   login: (password: string) => boolean;
   logout: () => void;
-  addProduct: (product: Omit<Product, 'id'>) => void;
-  updateProduct: (id: string, product: Partial<Product>) => void;
-  deleteProduct: (id: string) => void;
-  resetToDefault: () => void;
+  addProduct: (product: Omit<Product, 'id'>) => Promise<void>;
+  updateProduct: (id: string, product: Partial<Product>) => Promise<void>;
+  deleteProduct: (id: string) => Promise<void>;
+  refreshProducts: () => Promise<void>;
 }
 
-const STORAGE_KEY_PRODUCTS = 'florea_admin_products';
 const STORAGE_KEY_AUTH = 'florea_admin_auth';
-const ADMIN_SECRET = 'admin123'; // Default demo password
+const ADMIN_SECRET = 'admin123';
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
 export function AdminProvider({ children }: { children: ReactNode }) {
-  const [products, setProducts] = useState<Product[]>(INITIAL_PRODUCTS);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [isInitialized, setIsInitialized] = useState<boolean>(false);
+
+  // Ambil data langsung dari Supabase
+  const refreshProducts = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const data = await fetchProductsFromSupabase();
+      setProducts(data);
+    } catch (err) {
+      console.error('Failed to load products:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     try {
@@ -31,29 +50,11 @@ export function AdminProvider({ children }: { children: ReactNode }) {
       if (storedAuth === 'true') {
         setIsAuthenticated(true);
       }
-
-      const storedProducts = localStorage.getItem(STORAGE_KEY_PRODUCTS);
-      if (storedProducts) {
-        const parsed = JSON.parse(storedProducts);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setProducts(parsed);
-        }
-      }
-    } catch {
-      // Ignore localStorage error (e.g. incognito or disabled)
-    } finally {
-      setIsInitialized(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!isInitialized) return;
-    try {
-      localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(products));
     } catch {
       // Ignore
     }
-  }, [products, isInitialized]);
+    refreshProducts();
+  }, [refreshProducts]);
 
   const login = (password: string): boolean => {
     if (password === ADMIN_SECRET) {
@@ -69,45 +70,55 @@ export function AdminProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem(STORAGE_KEY_AUTH);
   };
 
-  const addProduct = (newProd: Omit<Product, 'id'>) => {
-    const slugId = newProd.name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)+/g, '') || `prod-${Date.now()}`;
-
-    const created: Product = {
-      ...newProd,
-      id: `${slugId}-${Date.now().toString().slice(-4)}`,
-    };
-    setProducts((prev) => [created, ...prev]);
+  // CRUD Supabase
+  const addProduct = async (newProd: Omit<Product, 'id'>) => {
+    try {
+      const created = await createProductInSupabase(newProd);
+      if (created) {
+        setProducts((prev) => [created, ...prev]);
+      }
+    } catch (err) {
+      console.error('Error adding product:', err);
+      throw err;
+    }
   };
 
-  const updateProduct = (id: string, updatedFields: Partial<Product>) => {
-    setProducts((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, ...updatedFields } : item))
-    );
+  const updateProduct = async (id: string, updatedFields: Partial<Product>) => {
+    try {
+      const updated = await updateProductInSupabase(id, updatedFields);
+      if (updated) {
+        setProducts((prev) =>
+          prev.map((item) => (item.id === id ? updated : item))
+        );
+      }
+    } catch (err) {
+      console.error('Error updating product:', err);
+      throw err;
+    }
   };
 
-  const deleteProduct = (id: string) => {
-    setProducts((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  const resetToDefault = () => {
-    setProducts(INITIAL_PRODUCTS);
-    localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(INITIAL_PRODUCTS));
+  const deleteProduct = async (id: string) => {
+    try {
+      await deleteProductInSupabase(id);
+      setProducts((prev) => prev.filter((item) => item.id !== id));
+    } catch (err) {
+      console.error('Error deleting product:', err);
+      throw err;
+    }
   };
 
   return (
     <AdminContext.Provider
       value={{
         products,
+        isLoading,
         isAuthenticated,
         login,
         logout,
         addProduct,
         updateProduct,
         deleteProduct,
-        resetToDefault,
+        refreshProducts,
       }}
     >
       {children}

@@ -23,7 +23,7 @@ export default function ProductFormModal({
   // Basic Info
   const [name, setName] = useState(initialProduct?.name || '');
   const [category, setCategory] = useState<Product['category']>(
-    initialProduct?.category || 'artificial'
+    initialProduct?.category || 'artistic'
   );
   const [price, setPrice] = useState<number>(initialProduct?.price || 220000);
   const [originalPrice, setOriginalPrice] = useState<number | undefined>(
@@ -111,7 +111,7 @@ export default function ProductFormModal({
       ...(initialProduct ? { id: initialProduct.id } : {}),
       name,
       category,
-      categoryLabel: CATEGORY_LABELS[category] || 'Signature Artificial Bouquet',
+      categoryLabel: CATEGORY_LABELS[category] || 'Pesona Puspa Abadi (Koleksi Buket Bunga Artistik)',
       price: Number(price),
       originalPrice: originalPrice ? Number(originalPrice) : undefined,
       isPopular,
@@ -191,10 +191,9 @@ export default function ProductFormModal({
                   }}
                   className="w-full text-xs sm:text-sm p-2.5 rounded-lg border border-stone-200 focus:outline-none focus:border-[#E60067] focus:ring-1 focus:ring-[#E60067] bg-white"
                 >
-                  <option value="artificial">Signature Artificial Bouquet</option>
-                  <option value="bloombox">Haute Bloom Box</option>
-                  <option value="graduation">Graduation Milestone</option>
-                  <option value="preserved">Eternal Preserved</option>
+                  <option value="artistic">Buket Bunga Artistik</option>
+                  <option value="celebration">Perayaan & Momen</option>
+                  <option value="personal">Personalisasi & Hadiah</option>
                 </select>
               </div>
 

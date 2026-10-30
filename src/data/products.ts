@@ -1,7 +1,7 @@
 export interface Product {
   id: string;
   name: string;
-  category: 'artificial' | 'preserved' | 'bloombox' | 'graduation';
+  category: 'artistic' | 'celebration' | 'personal';
   categoryLabel?: string;
   price: number;
   originalPrice?: number;
@@ -27,25 +27,27 @@ export interface Product {
 }
 
 export const CATEGORY_LABELS: Record<Product['category'], string> = {
-  artificial: 'Signature Artificial Bouquet',
-  bloombox: 'Haute Bloom Box',
-  graduation: 'Graduation Milestone',
-  preserved: 'Eternal Preserved',
+  artistic: 'Pesona Puspa Abadi (Koleksi Buket Bunga Artistik)',
+  celebration: 'Gubahan Selebrasi Megah (Koleksi Perayaan & Momen Akbar)',
+  personal: 'Tanda Kasih & Kenangan (Koleksi Personalisasi & Hadiah Spesial)',
+};
+
+export const CATEGORY_SHORT_LABELS: Record<Product['category'], string> = {
+  artistic: 'Buket Bunga Artistik',
+  celebration: 'Perayaan & Momen',
+  personal: 'Personalisasi & Hadiah',
 };
 
 export function getCategoryLabel(product: { category: Product['category']; categoryLabel?: string }): string {
-  if (product.category === 'artificial') {
-    return 'Signature Artificial Bouquet';
-  }
-  return product.categoryLabel || CATEGORY_LABELS[product.category] || 'Signature Collection';
+  return product.categoryLabel || CATEGORY_LABELS[product.category] || 'Pesona Puspa Abadi (Koleksi Buket Bunga Artistik)';
 }
 
 export const PRODUCTS: Product[] = [
   {
     id: 'blush-silk-peony',
     name: 'Blush Velvet Silk Peony & Rose',
-    category: 'artificial',
-    categoryLabel: 'Signature Artificial Bouquet',
+    category: 'artistic',
+    categoryLabel: 'Pesona Puspa Abadi (Koleksi Buket Bunga Artistik)',
     price: 245000,
     originalPrice: 285000,
     isPopular: true,
@@ -62,8 +64,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'timeless-white-hydrangea',
     name: 'Timeless White Botanical Ensemble',
-    category: 'artificial',
-    categoryLabel: 'Signature Artificial Bouquet',
+    category: 'artistic',
+    categoryLabel: 'Pesona Puspa Abadi (Koleksi Buket Bunga Artistik)',
     price: 220000,
     material: 'Textured Fabric & Real Touch Stem',
     durability: 'Presisi Alami • Tahan Sepanjang Masa',
@@ -78,8 +80,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'everlasting-rose-casket',
     name: 'Everlasting Preserved Rose Box',
-    category: 'bloombox',
-    categoryLabel: 'Haute Bloom Box',
+    category: 'personal',
+    categoryLabel: 'Tanda Kasih & Kenangan (Koleksi Personalisasi & Hadiah Spesial)',
     price: 360000,
     isPopular: true,
     material: 'Preserved & Velvet Accent',
@@ -95,8 +97,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'graduation-sunflower-joy',
     name: 'Graduation Golden Artificial Sunflower',
-    category: 'graduation',
-    categoryLabel: 'Graduation Milestone',
+    category: 'celebration',
+    categoryLabel: 'Gubahan Selebrasi Megah (Koleksi Perayaan & Momen Akbar)',
     price: 195000,
     material: 'High-Grade Artificial Silk',
     durability: 'Tetap Tegak & Segar Sepanjang Hari',
@@ -111,8 +113,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'korean-tulip-pastel',
     name: 'Korean Pastel Silk Tulip Melody',
-    category: 'artificial',
-    categoryLabel: 'Signature Artificial Bouquet',
+    category: 'artistic',
+    categoryLabel: 'Pesona Puspa Abadi (Koleksi Buket Bunga Artistik)',
     price: 210000,
     originalPrice: 240000,
     isPopular: true,
@@ -129,8 +131,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'lavender-eucalyptus-box',
     name: 'French Lavender & Silk Bloom Box',
-    category: 'bloombox',
-    categoryLabel: 'Provence Botanical Box',
+    category: 'personal',
+    categoryLabel: 'Tanda Kasih & Kenangan (Koleksi Personalisasi & Hadiah Spesial)',
     price: 315000,
     material: 'Dried Lavender & Premium Silk Rose',
     durability: 'Aroma Lembut Menenangkan • Abadi',
@@ -145,8 +147,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'vintage-autumn-rose',
     name: 'Autumn Terracotta Garden Bouquet',
-    category: 'artificial',
-    categoryLabel: 'Signature Artificial Bouquet',
+    category: 'artistic',
+    categoryLabel: 'Pesona Puspa Abadi (Koleksi Buket Bunga Artistik)',
     price: 265000,
     material: 'Silk Flower & Preserved Foliage',
     durability: 'Karakter Hangat & Warna Abadi',
@@ -161,8 +163,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'deluxe-graduation-bear-rose',
     name: 'Deluxe Graduation Teddy & Silk Rose',
-    category: 'graduation',
-    categoryLabel: 'Celebration Prestige',
+    category: 'celebration',
+    categoryLabel: 'Gubahan Selebrasi Megah (Koleksi Perayaan & Momen Akbar)',
     price: 250000,
     originalPrice: 290000,
     isPopular: true,
@@ -180,27 +182,27 @@ export const PRODUCTS: Product[] = [
 
 export const CATEGORIES = [
   {
-    id: 'artificial',
-    title: 'Buket Silk & Artificial Eksklusif',
-    subtitle: 'Keindahan Yang Berbicara Selamanya',
-    description: 'Sentuhan kain sutra dan velvet bertekstur alami. Sempurna merekam momen cinta tanpa tergerus waktu.',
-    image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
+    id: 'artistic',
+    title: 'Pesona Puspa Abadi',
+    subtitle: 'Koleksi Buket Bunga Artistik',
+    description: 'Sentuhan kain sutra dan velvet bertekstur alami dalam estetika rangkaian artistik yang abadi.',
+    image: '/category/Pesona Puspa Abadi (Koleksi Buket Bunga Artistik).jfif',
     tag: 'Pilihan Utama',
   },
   {
-    id: 'bloombox',
-    title: 'Haute Everlasting Bloom Box',
-    subtitle: 'Kesan Mewah Sudut Meja',
-    description: 'Rangkaian mawar dalam silinder luxury box dengan pita satin berkelas untuk hadiah personal yang bergengsi.',
-    image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=85',
-    tag: 'Prestige Gift',
+    id: 'celebration',
+    title: 'Gubahan Selebrasi Megah',
+    subtitle: 'Koleksi Perayaan & Momen Akbar',
+    description: 'Buket anggun dan kokoh yang dirancang untuk mengabadikan pencapaian wisuda serta selebrasi bersejarah.',
+    image: '/category/Gubahan Selebrasi Megah (Koleksi Perayaan & Momen Akbar).jfif',
+    tag: 'Momen Akbar',
   },
   {
-    id: 'graduation',
-    title: 'Penghargaan Wisuda & Momen Bersejarah',
-    subtitle: 'Sempurna Di Setiap Jepretan Foto',
-    description: 'Buket anggun dan kokoh yang siap menemani hari kelulusan dari pagi hingga malam dengan penuh wibawa.',
-    image: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=900&q=85',
-    tag: 'Milestone Ready',
+    id: 'personal',
+    title: 'Tanda Kasih & Kenangan',
+    subtitle: 'Koleksi Personalisasi & Hadiah Spesial',
+    description: 'Rangkaian eksklusif bloom box dan bunga preserved abadi sebagai lambang ketulusan hadiah personal penuh arti.',
+    image: '/category/Tanda Kasih & Kenangan (Koleksi Personalisasi & Hadiah Spesial).jfif',
+    tag: 'Hadiah Spesial',
   },
 ];

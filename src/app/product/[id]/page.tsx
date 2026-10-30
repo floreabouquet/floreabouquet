@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { PRODUCTS } from '@/data/products';
+import { getProductById, getProducts } from '@/lib/supabase/products';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import ProductDetailClient from '@/components/ProductDetailClient';
@@ -11,15 +11,12 @@ interface PageProps {
   }>;
 }
 
-export async function generateStaticParams() {
-  return PRODUCTS.map((product) => ({
-    id: product.id,
-  }));
-}
+// Revalidasi dinamis agar produk baru langsung bisa dibuka
+export const revalidate = 0;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const product = PRODUCTS.find((p) => p.id === id);
+  const product = await getProductById(id);
 
   if (!product) {
     return {
@@ -40,14 +37,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProductDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const product = PRODUCTS.find((p) => p.id === id);
+  const product = await getProductById(id);
 
   if (!product) {
     notFound();
   }
 
-  // Ambil produk terkait (kategori yang sama, bukan produk ini)
-  const relatedProducts = PRODUCTS.filter((p) => p.id !== product.id).slice(0, 4);
+  const allProducts = await getProducts();
+  const relatedProducts = allProducts.filter((p) => p.id !== product.id).slice(0, 4);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F5]">

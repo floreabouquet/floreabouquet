@@ -45,6 +45,7 @@ export function CategoryBento({ onSelectCategory }: CategoryBentoProps) {
             src={CATEGORIES[0].image}
             alt={CATEGORIES[0].title}
             fill
+            unoptimized
             sizes="(max-width: 1024px) 100vw, 60vw"
             className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           />
@@ -86,6 +87,7 @@ export function CategoryBento({ onSelectCategory }: CategoryBentoProps) {
                 src={cat.image}
                 alt={cat.title}
                 fill
+                unoptimized
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />

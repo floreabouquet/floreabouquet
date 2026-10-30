@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { PRODUCTS, Product, getCategoryLabel } from '@/data/products';
+import { ChevronDown, Loader2 } from 'lucide-react';
+import { Product, getCategoryLabel } from '@/data/products';
+import { useAdmin } from '@/context/AdminContext';
 import { ProductCard } from '@/components/ProductCard';
 import { QuickOrderModal } from '@/components/QuickOrderModal';
 
@@ -17,17 +18,18 @@ export function ProductCatalog({
   onCategoryChange,
   searchTerm = '',
 }: ProductCatalogProps) {
+  const { products, isLoading } = useAdmin();
   const [activeModalProduct, setActiveModalProduct] = useState<Product | null>(null);
 
   const filterTabs = [
     { id: 'all', label: 'Semua Koleksi' },
-    { id: 'artificial', label: 'Buket Silk Sutra' },
-    { id: 'bloombox', label: 'Haute Bloom Box' },
-    { id: 'graduation', label: 'Edisi Wisuda' },
+    { id: 'artistic', label: 'Buket Bunga Artistik' },
+    { id: 'celebration', label: 'Perayaan & Momen' },
+    { id: 'personal', label: 'Personalisasi & Hadiah' },
   ];
 
-  // Filter produk
-  const filteredProducts = PRODUCTS.filter((item) => {
+  // Filter produk dari data Supabase yang ada di context
+  const filteredProducts = products.filter((item) => {
     const label = getCategoryLabel(item);
     const matchesCategory =
       selectedCategory === 'all' || item.category === selectedCategory;
@@ -94,8 +96,13 @@ export function ProductCatalog({
         </div>
       </div>
 
-      {/* Grid / Horizontal Carousel Kartu Sampel (2 Kolom di Mobile, Horizontal Scroll) */}
-      {filteredProducts.length > 0 ? (
+      {/* Loading State */}
+      {isLoading ? (
+        <div className="py-20 flex flex-col items-center justify-center gap-3">
+          <Loader2 className="w-6 h-6 animate-spin text-[#E60067]" />
+          <p className="text-xs text-stone-500">Memuat koleksi mahakarya...</p>
+        </div>
+      ) : filteredProducts.length > 0 ? (
         <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 overflow-x-auto sm:overflow-visible pb-4 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory scrollbar-none">
           {filteredProducts.map((product) => (
             <div
