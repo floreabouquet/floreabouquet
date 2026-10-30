@@ -23,14 +23,14 @@ export function CategoryBento({ onSelectCategory }: CategoryBentoProps) {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10 pb-4 border-b border-stone-200/80">
         <div>
           <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-[#E60067] block mb-1">
-            Koleksi Berdasarkan Momen
+            Kurasi Berdasarkan Momen
           </span>
           <h2 className="text-2xl sm:text-3xl font-serif font-medium text-stone-900 tracking-tight">
-            Pilihan Rangkaian Untuk Hari Istimewa
+            Karya Seni Floral Untuk Detik Bersejarah Anda
           </h2>
         </div>
         <p className="text-xs text-stone-500 max-w-xs leading-relaxed">
-          Temukan konsep desain bunga buatan terbaik untuk kado wisuda, anniversary, maupun dekorasi ruangan.
+          Setiap helai dirangkai untuk menciptakan kehangatan, wibawa, dan memori yang hidup selamanya di hati sang penerima.
         </p>
       </div>
 
@@ -48,7 +48,7 @@ export function CategoryBento({ onSelectCategory }: CategoryBentoProps) {
             sizes="(max-width: 1024px) 100vw, 60vw"
             className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#88003c]/90 via-[#E60067]/40 to-transparent" />
 
           <div className="absolute inset-0 p-5 sm:p-8 flex flex-col justify-between z-10 text-white">
             <div className="flex justify-between items-start">
@@ -89,7 +89,7 @@ export function CategoryBento({ onSelectCategory }: CategoryBentoProps) {
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-stone-950/60 group-hover:bg-stone-950/70 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#88003c]/90 via-[#E60067]/35 to-stone-900/40 group-hover:via-[#E60067]/45 transition-colors duration-300" />
 
               <div className="absolute inset-0 p-5 flex flex-col justify-between z-10 text-white">
                 <div className="flex justify-between items-center">

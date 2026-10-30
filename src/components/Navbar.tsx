@@ -29,14 +29,8 @@ export function Navbar({ onSearchChange, activeCategory = 'all', onSelectCategor
 
   return (
     <header className="sticky top-0 z-40 bg-[#FAF8F5]/90 backdrop-blur-md border-b border-stone-200/80 transition-all">
-      {/* Micro Notice Bar */}
-      <div className="bg-stone-900 text-stone-200 text-[11px] py-1.5 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-        <span>Same-Day Delivery Siap Kirim Hari Ini • Free Custom Greeting Card & Box</span>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18">
+        <div className="flex items-center justify-between h-14 sm:h-18">
           
           {/* Logo Brand Asli */}
           <Link
@@ -44,7 +38,7 @@ export function Navbar({ onSearchChange, activeCategory = 'all', onSelectCategor
             aria-label="Floréa Florist Home"
             className="flex items-center group focus:outline-none transition-transform duration-200 hover:scale-105 active:scale-95 shrink-0"
           >
-            <div className="relative h-12 w-28 sm:h-14 sm:w-36">
+            <div className="relative h-9 w-24 sm:h-14 sm:w-36">
               <Image
                 src="/logo-transparent.png"
                 alt="Floréa Florist Logo"
@@ -56,25 +50,26 @@ export function Navbar({ onSearchChange, activeCategory = 'all', onSelectCategor
           </Link>
 
           {/* Right Action Icons: Search Icon + Pink Floral CTA */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
             {/* Search Icon Trigger */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
               aria-label="Cari bunga"
-              className="p-2 text-[#E60067] hover:text-[#B80053] transition-colors duration-150 active:scale-95 shrink-0 focus:outline-none"
+              className="p-1.5 sm:p-2 text-[#E60067] hover:text-[#B80053] transition-colors duration-150 active:scale-95 shrink-0 focus:outline-none"
             >
-              <Search className="w-5 h-5 stroke-[2.25]" />
+              <Search className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.25]" />
             </button>
 
             {/* Direct WhatsApp Call to Action */}
             <a
-              href="https://wa.me/62895705032933?text=Halo%20Flor%C3%A9a%20Florist,%20saya%20ingin%20konsultasi%20pemesanan%20bunga"
+              href="https://wa.me/62895705032933?text=Halo%20Flor%C3%A9a%20Florist,%20saya%20ingin%20konsultasi%20pemesanan%20buket"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-lg bg-[#E60067] hover:bg-[#CC005A] text-white text-xs font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-sm whitespace-nowrap"
+              className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-[#E60067] hover:bg-[#CC005A] text-white text-[11px] sm:text-xs font-semibold tracking-wide transition-all duration-150 active:scale-[0.98] shadow-sm whitespace-nowrap"
             >
-              <span>Konsultasi Florist</span>
-              <ArrowUpRight className="w-3.5 h-3.5 opacity-80" />
+              <span>Konsultasi</span>
+              <span className="hidden sm:inline">Eksklusif</span>
+              <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 opacity-80" />
             </a>
           </div>
         </div>
@@ -85,7 +80,7 @@ export function Navbar({ onSearchChange, activeCategory = 'all', onSelectCategor
             <div className="relative max-w-xl mx-auto flex items-center">
               <input
                 type="text"
-                placeholder="Cari buket mawar, tulip, anggrek, atau bloom box..."
+                placeholder="Temukan mahakarya: peoni sutra, tulip pastel, bloom box mewah..."
                 value={searchValue}
                 onChange={handleSearchChange}
                 className="w-full text-xs pl-9 pr-8 py-2.5 rounded-lg bg-white border border-stone-300 focus:outline-none focus:border-stone-900 transition shadow-2xs"

@@ -3,7 +3,6 @@ import { Metadata } from 'next';
 import { PRODUCTS } from '@/data/products';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { FloatingWhatsAppButton } from '@/components/FloatingWhatsAppButton';
 import ProductDetailClient from '@/components/ProductDetailClient';
 
 interface PageProps {
@@ -58,7 +57,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <ProductDetailClient product={product} relatedProducts={relatedProducts} />
       </main>
 
-      <FloatingWhatsAppButton />
       <Footer />
     </div>
   );

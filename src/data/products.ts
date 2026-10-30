@@ -2,7 +2,7 @@ export interface Product {
   id: string;
   name: string;
   category: 'artificial' | 'preserved' | 'bloombox' | 'graduation';
-  categoryLabel: string;
+  categoryLabel?: string;
   price: number;
   originalPrice?: number;
   image: string;
@@ -26,167 +26,181 @@ export interface Product {
   };
 }
 
+export const CATEGORY_LABELS: Record<Product['category'], string> = {
+  artificial: 'Signature Artificial Bouquet',
+  bloombox: 'Haute Bloom Box',
+  graduation: 'Graduation Milestone',
+  preserved: 'Eternal Preserved',
+};
+
+export function getCategoryLabel(product: { category: Product['category']; categoryLabel?: string }): string {
+  if (product.category === 'artificial') {
+    return 'Signature Artificial Bouquet';
+  }
+  return product.categoryLabel || CATEGORY_LABELS[product.category] || 'Signature Collection';
+}
+
 export const PRODUCTS: Product[] = [
   {
     id: 'blush-silk-peony',
     name: 'Blush Velvet Silk Peony & Rose',
     category: 'artificial',
-    categoryLabel: 'Artificial Bouquet',
+    categoryLabel: 'Signature Artificial Bouquet',
     price: 245000,
     originalPrice: 285000,
     isPopular: true,
     material: 'Premium Silk & Velvet Touch',
-    durability: 'Abadi / Tidak Layu',
+    durability: 'Keanggunan Abadi • Tanpa Perlu Disiram',
     image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=85',
     ],
-    description: 'Buket bunga tiruan premium berbahan kain silk halus dengan gradasi warna blush natural. Tahan selamanya sebagai kenang-kenangan manis tanpa perlu disiram air.',
+    description: 'Bukan sekadar buket, melainkan ungkapan rasa yang dirangkai sempurna. Sentuhan kelopak velvet peoni dan mawar blush sutra premium yang memancarkan pesona hangat, anggun, dan abadi sebagai pengingat momen berharga Anda.',
   },
   {
     id: 'timeless-white-hydrangea',
     name: 'Timeless White Botanical Ensemble',
     category: 'artificial',
-    categoryLabel: 'Artificial Bouquet',
+    categoryLabel: 'Signature Artificial Bouquet',
     price: 220000,
     material: 'Textured Fabric & Real Touch Stem',
-    durability: 'Abadi / Anti Rontok',
+    durability: 'Presisi Alami • Tahan Sepanjang Masa',
     image: 'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=900&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85',
     ],
-    description: 'Rangkaian artificial hydrangea putih bersih dipadu baby breath tiruan bertekstur matte. Dibungkus kertas wrap ala Korean minimalis.',
+    description: 'Kemurnian hydrangea putih dalam harmoni Korean wrapping minimalis. Dihadirkan bagi Anda yang menghargai ketenangan estetika, ketulusan rasa, dan kemewahan yang berbicara dalam keheningan.',
   },
   {
     id: 'everlasting-rose-casket',
     name: 'Everlasting Preserved Rose Box',
     category: 'bloombox',
-    categoryLabel: 'Bloom Box',
+    categoryLabel: 'Haute Bloom Box',
     price: 360000,
     isPopular: true,
-    material: 'Preserved & Artificial Accent',
-    durability: 'Tahan 3-5 Tahun',
+    material: 'Preserved & Velvet Accent',
+    durability: 'Kemewahan Abadi • Tahan 3-5 Tahun',
     image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=85',
     ],
-    description: 'Mawar artificial berkualitas tinggi dalam silinder luxury round box hitam beraksen pita satin emas. Sangat elegan untuk hadiah meja kerja.',
+    description: 'Simbol penghormatan dan kasih sayang berkelas tinggi. Mawar pilihan dalam silinder luxury box beraksen pita satin emas, siap menjadi centerpiece meja yang memikat setiap pasang mata.',
   },
   {
     id: 'graduation-sunflower-joy',
     name: 'Graduation Golden Artificial Sunflower',
     category: 'graduation',
-    categoryLabel: 'Graduation Bouquet',
+    categoryLabel: 'Graduation Milestone',
     price: 195000,
     material: 'High-Grade Artificial Silk',
-    durability: 'Abadi & Ringan',
+    durability: 'Tetap Tegak & Segar Sepanjang Hari',
     image: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=900&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85',
     ],
-    description: 'Bunga matahari buatan warna cerah melambangkan kesuksesan, siap dibawa foto wisuda seharian tanpa risiko layu atau patah.',
+    description: 'Menyemai rasa bangga atas pencapaian besar sang juara. Bunga matahari keemasan yang dirangkai presisi, tetap tegak anggun saat sesi foto wisuda seharian penuh tanpa khawatir layu atau patah.',
   },
   {
     id: 'korean-tulip-pastel',
     name: 'Korean Pastel Silk Tulip Melody',
     category: 'artificial',
-    categoryLabel: 'Artificial Bouquet',
+    categoryLabel: 'Signature Artificial Bouquet',
     price: 210000,
     originalPrice: 240000,
     isPopular: true,
     material: 'Real-Touch Polyurethane & Silk Leaf',
-    durability: 'Abadi / Fleksibel',
+    durability: 'Fleksibel, Lembut & Tanpa Usang',
     image: 'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
     ],
-    description: 'Buket tulip artificial bernuansa pastel lembut ala florist Seoul. Batang fleksibel dengan kelopak elastis yang tidak mudah lecek.',
+    description: 'Romansa lembut bernuansa Seoul dengan sentuhan real-touch yang lentur dan sejuk saat disentuh. Pilihan personal terbaik untuk menghangatkan hati seseorang yang paling istimewa bagi Anda.',
   },
   {
     id: 'lavender-eucalyptus-box',
     name: 'French Lavender & Silk Bloom Box',
     category: 'bloombox',
-    categoryLabel: 'Bloom Box',
+    categoryLabel: 'Provence Botanical Box',
     price: 315000,
     material: 'Dried Lavender & Premium Silk Rose',
-    durability: 'Abadi & Wangi Ringan',
+    durability: 'Aroma Lembut Menenangkan • Abadi',
     image: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=900&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=85',
     ],
-    description: 'Kombinasi bunga silk rose dan dried lavender aromatik dalam kotak keranjang estetik. Menghias sudut meja kerja dengan nuansa damai.',
+    description: 'Hadirkan nuansa damai pedesaan Provence ke sudut ruang Anda. Paduan mawar sutra dengan lavender alami yang memikat mata dan meneduhkan suasana setiap kali dipandang.',
   },
   {
     id: 'vintage-autumn-rose',
     name: 'Autumn Terracotta Garden Bouquet',
     category: 'artificial',
-    categoryLabel: 'Artificial Bouquet',
+    categoryLabel: 'Signature Artificial Bouquet',
     price: 265000,
     material: 'Silk Flower & Preserved Foliage',
-    durability: 'Abadi / Anti Pudar',
+    durability: 'Karakter Hangat & Warna Abadi',
     image: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=900&q=85',
     ],
-    description: 'Perpaduan mawar artificial bernuansa terracotta, burnt orange, dan daun eucalyptus kering untuk kesan rustic elegan yang hangat.',
+    description: 'Kombinasi warna terakota dan daun eucalyptus rustic yang penuh karisma. Mewakili kedewasaan emosional, kehangatan hubungan, serta ketulusan yang terpatri abadi.',
   },
   {
     id: 'deluxe-graduation-bear-rose',
     name: 'Deluxe Graduation Teddy & Silk Rose',
     category: 'graduation',
-    categoryLabel: 'Graduation Bouquet',
+    categoryLabel: 'Celebration Prestige',
     price: 250000,
     originalPrice: 290000,
     isPopular: true,
     material: 'Plush Doll & Premium Silk Rose',
-    durability: 'Abadi / Kenangan Wisuda',
+    durability: 'Kenangan Kelulusan Seumur Hidup',
     image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=900&q=85',
       'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85',
     ],
-    description: 'Buket wisuda komplit dengan boneka toga mini berbulu lembut dan mawar artificial abadi, lengkap dengan selempang nama custom.',
+    description: 'Hadiah penghargaan tertinggi untuk perjuangan yang telah selesai. Dilengkapi boneka toga eksklusif berbahan beludru halus dan mawar sutra abadi dengan selempang nama personal.',
   }
 ];
 
 export const CATEGORIES = [
   {
     id: 'artificial',
-    title: 'Buket Bunga Artificial',
-    subtitle: 'Abadi & Tahan Selamanya',
-    description: 'Kelopak kain sutra & velvet dengan sentuhan visual realistis menyerupai bunga asli.',
+    title: 'Buket Silk & Artificial Eksklusif',
+    subtitle: 'Keindahan Yang Berbicara Selamanya',
+    description: 'Sentuhan kain sutra dan velvet bertekstur alami. Sempurna merekam momen cinta tanpa tergerus waktu.',
     image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
-    tag: 'Paling Diminati',
+    tag: 'Pilihan Utama',
   },
   {
     id: 'bloombox',
-    title: 'Everlasting Bloom Box',
-    subtitle: 'Elegan Untuk Dekorasi Meja',
-    description: 'Rangkaian mawar buatan dalam kotak mewah tahan lama tanpa perlu perawatan.',
+    title: 'Haute Everlasting Bloom Box',
+    subtitle: 'Kesan Mewah Sudut Meja',
+    description: 'Rangkaian mawar dalam silinder luxury box dengan pita satin berkelas untuk hadiah personal yang bergengsi.',
     image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=85',
-    tag: 'Long Lasting Gift',
+    tag: 'Prestige Gift',
   },
   {
     id: 'graduation',
-    title: 'Buket Wisuda & Momen Spesial',
-    subtitle: 'Ringan & Anti Rontok',
-    description: 'Pilihan buket praktis untuk foto kelulusan, anniversary, dan hadiah kado sahabat.',
+    title: 'Penghargaan Wisuda & Momen Bersejarah',
+    subtitle: 'Sempurna Di Setiap Jepretan Foto',
+    description: 'Buket anggun dan kokoh yang siap menemani hari kelulusan dari pagi hingga malam dengan penuh wibawa.',
     image: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=900&q=85',
-    tag: 'Photo Ready',
+    tag: 'Milestone Ready',
   },
 ];

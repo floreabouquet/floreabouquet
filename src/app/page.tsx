@@ -6,7 +6,6 @@ import { HeroSection } from '@/components/HeroSection';
 import { CategoryBento } from '@/components/CategoryBento';
 import { ProductCatalog } from '@/components/ProductCatalog';
 import { StudioAndDeliverySection } from '@/components/StudioAndDeliverySection';
-import { FloatingWhatsAppButton } from '@/components/FloatingWhatsAppButton';
 import { Footer } from '@/components/Footer';
 
 export default function Home() {
@@ -36,8 +35,6 @@ export default function Home() {
 
         <StudioAndDeliverySection />
       </main>
-
-      <FloatingWhatsAppButton />
 
       <Footer />
     </div>

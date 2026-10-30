@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { X, Send, Sparkles, Clock, ShieldCheck, HeartHandshake } from 'lucide-react';
 import Image from 'next/image';
-import { Product } from '@/data/products';
+import { Product, getCategoryLabel } from '@/data/products';
 
 interface QuickOrderModalProps {
   product: Product | null;
@@ -35,7 +35,7 @@ export function QuickOrderModal({ product, onClose }: QuickOrderModalProps) {
     const message = `*PESANAN BUKET FLOREA BOUQUET*
 
 • *Item*: ${product.name}
-• *Kategori*: ${product.categoryLabel}
+• *Kategori*: ${getCategoryLabel(product)}
 • *Harga*: ${formatPrice(product.price)}
 • *Tipe Wrapping*: ${wrapColor}
 
@@ -62,10 +62,10 @@ Mohon konfirmasi ketersediaan slot rangkaian untuk jadwal di atas. Terima kasih!
         <div className="px-6 py-4 border-b border-stone-200 flex items-center justify-between bg-stone-50/50">
           <div>
             <h3 className="font-serif font-semibold text-lg text-stone-900">
-              Formulir Reservasi Rangkaian
+              Reservasi Rangkaian Eksklusif
             </h3>
             <p className="text-[11px] text-stone-500 font-sans">
-              Langsung terhubung ke Florist via WhatsApp resmi
+              Terhubung langsung dengan Master Florist kami via WhatsApp Concierge
             </p>
           </div>
           <button
@@ -81,11 +81,11 @@ Mohon konfirmasi ketersediaan slot rangkaian untuk jadwal di atas. Terima kasih!
           {/* Item Preview Card */}
           <div className="flex gap-4 p-3.5 bg-stone-50 rounded-xl border border-stone-200/80 items-center">
             <div className="relative w-16 h-20 rounded-lg overflow-hidden shrink-0 bg-stone-200">
-              <Image src={product.image} alt={product.name} fill className="object-cover" />
+              <Image src={product.image} alt={product.name} fill unoptimized className="object-cover" />
             </div>
             <div className="flex-grow">
               <span className="text-[10px] uppercase tracking-wider text-rose-800 font-semibold">
-                {product.categoryLabel} • {product.durability}
+                {getCategoryLabel(product)}
               </span>
               <h4 className="font-serif font-medium text-stone-900 text-sm line-clamp-1">
                 {product.name}
@@ -187,11 +187,11 @@ Mohon konfirmasi ketersediaan slot rangkaian untuk jadwal di atas. Terima kasih!
 
             <div>
               <label className="block mb-1.5 font-semibold text-stone-900">
-                Pesan Kartu Ucapan (Dicetak dengan Kartu Khusus)
+                Pesan Personal di Kartu Kaligrafi (Gratis)
               </label>
               <textarea
                 rows={3}
-                placeholder="Tulis pesan ucapan selamat, anniversary, doa, atau kata-kata personal..."
+                placeholder="Tuliskan ungkapan tulus dan bermakna Anda untuk orang tersayang..."
                 value={cardMessage}
                 onChange={(e) => setCardMessage(e.target.value)}
                 className="w-full px-3.5 py-2.5 rounded-lg border border-stone-300 focus:outline-none focus:border-stone-900 transition text-xs"
