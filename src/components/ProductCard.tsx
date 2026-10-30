@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Eye, MessageCircle, Sparkles } from 'lucide-react';
 import { Product } from '@/data/products';
 
 interface ProductCardProps {
   product: Product;
-  onQuickView: (product: Product) => void;
-  onOrderDirect: (product: Product) => void;
+  onQuickView?: (product: Product) => void;
+  onOrderDirect?: (product: Product) => void;
 }
 
 export function ProductCard({ product, onQuickView, onOrderDirect }: ProductCardProps) {
@@ -38,7 +39,7 @@ export function ProductCard({ product, onQuickView, onOrderDirect }: ProductCard
       </div>
 
       {/* Wadah Foto Buket */}
-      <div className="relative w-full aspect-[4/5] bg-stone-100 rounded-lg overflow-hidden mb-4">
+      <Link href={`/product/${product.id}`} className="relative w-full aspect-[4/5] bg-stone-100 rounded-lg overflow-hidden mb-4 block">
         <Image
           src={product.image}
           alt={product.name}
@@ -53,15 +54,12 @@ export function ProductCard({ product, onQuickView, onOrderDirect }: ProductCard
             isHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         >
-          <button
-            onClick={() => onQuickView(product)}
-            className="px-4 py-2 bg-white text-stone-900 text-xs font-semibold rounded-lg shadow-sm hover:bg-stone-50 flex items-center gap-1.5 transition active:scale-95"
-          >
+          <span className="px-4 py-2 bg-white text-stone-900 text-xs font-semibold rounded-lg shadow-sm hover:bg-stone-50 flex items-center gap-1.5 transition">
             <Eye className="w-3.5 h-3.5" />
-            Detail Buket
-          </button>
+            Lihat Detail
+          </span>
         </div>
-      </div>
+      </Link>
 
       {/* Info Rangkaian Buket */}
       <div className="flex flex-col flex-grow">
@@ -70,9 +68,11 @@ export function ProductCard({ product, onQuickView, onOrderDirect }: ProductCard
           <span className="text-stone-600 bg-stone-100 px-1.5 py-0.5 rounded text-[10px]">{product.durability}</span>
         </div>
 
-        <h3 className="text-base font-serif font-medium text-stone-900 group-hover:text-[#E60067] transition-colors line-clamp-1 mb-1">
-          {product.name}
-        </h3>
+        <Link href={`/product/${product.id}`} className="block">
+          <h3 className="text-base font-serif font-medium text-stone-900 group-hover:text-[#E60067] transition-colors line-clamp-1 mb-1">
+            {product.name}
+          </h3>
+        </Link>
 
         <p className="text-xs text-stone-500 line-clamp-1 mb-3">
           {product.description}
@@ -90,23 +90,15 @@ export function ProductCard({ product, onQuickView, onOrderDirect }: ProductCard
           )}
         </div>
 
-        {/* Tombol Aksi Taktil */}
+        {/* Tombol Aksi Menuju Halaman Detail */}
         <div className="mt-auto pt-1 flex items-center gap-2">
-          <button
-            onClick={() => onOrderDirect(product)}
-            className="flex-1 py-2.5 px-3 rounded-xl bg-[#E60067] hover:bg-[#CC005A] text-white text-xs font-semibold tracking-wide flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-[0.98] shadow-2xs cursor-pointer"
+          <Link
+            href={`/product/${product.id}`}
+            className="flex-1 py-2.5 px-3 rounded-xl bg-[#E60067] hover:bg-[#CC005A] text-white text-xs font-semibold tracking-wide flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-[0.98] shadow-2xs"
           >
-            <MessageCircle className="w-3.5 h-3.5" />
-            <span>Pesan WA</span>
-          </button>
-          
-          <button
-            onClick={() => onQuickView(product)}
-            className="sm:hidden p-2.5 rounded-xl border border-stone-200 text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition active:scale-95"
-            aria-label="Lihat Detail"
-          >
-            <Eye className="w-4 h-4" />
-          </button>
+            <Eye className="w-3.5 h-3.5" />
+            <span>Lihat Detail</span>
+          </Link>
         </div>
       </div>
     </div>

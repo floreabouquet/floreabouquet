@@ -6,10 +6,24 @@ export interface Product {
   price: number;
   originalPrice?: number;
   image: string;
+  gallery?: string[];
   isPopular?: boolean;
   material: string;
   durability: string;
   description: string;
+  inStock?: boolean;
+  rating?: number;
+  reviewCount?: number;
+  sku?: string;
+  sizes?: { id: string; name: string; price: number }[];
+  colors?: { name: string; value: string }[];
+  details?: {
+    flowerType?: string;
+    bouquetSize?: string;
+    arrangementStyle?: string;
+    packaging?: string;
+    occasion?: string;
+  };
 }
 
 export const PRODUCTS: Product[] = [
@@ -24,6 +38,11 @@ export const PRODUCTS: Product[] = [
     material: 'Premium Silk & Velvet Touch',
     durability: 'Abadi / Tidak Layu',
     image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=85',
+    ],
     description: 'Buket bunga tiruan premium berbahan kain silk halus dengan gradasi warna blush natural. Tahan selamanya sebagai kenang-kenangan manis tanpa perlu disiram air.',
   },
   {
@@ -35,6 +54,11 @@ export const PRODUCTS: Product[] = [
     material: 'Textured Fabric & Real Touch Stem',
     durability: 'Abadi / Anti Rontok',
     image: 'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=900&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85',
+    ],
     description: 'Rangkaian artificial hydrangea putih bersih dipadu baby breath tiruan bertekstur matte. Dibungkus kertas wrap ala Korean minimalis.',
   },
   {
@@ -47,6 +71,11 @@ export const PRODUCTS: Product[] = [
     material: 'Preserved & Artificial Accent',
     durability: 'Tahan 3-5 Tahun',
     image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=85',
+    ],
     description: 'Mawar artificial berkualitas tinggi dalam silinder luxury round box hitam beraksen pita satin emas. Sangat elegan untuk hadiah meja kerja.',
   },
   {
@@ -58,6 +87,11 @@ export const PRODUCTS: Product[] = [
     material: 'High-Grade Artificial Silk',
     durability: 'Abadi & Ringan',
     image: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=900&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85',
+    ],
     description: 'Bunga matahari buatan warna cerah melambangkan kesuksesan, siap dibawa foto wisuda seharian tanpa risiko layu atau patah.',
   },
   {
@@ -71,6 +105,11 @@ export const PRODUCTS: Product[] = [
     material: 'Real-Touch Polyurethane & Silk Leaf',
     durability: 'Abadi / Fleksibel',
     image: 'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
+    ],
     description: 'Buket tulip artificial bernuansa pastel lembut ala florist Seoul. Batang fleksibel dengan kelopak elastis yang tidak mudah lecek.',
   },
   {
@@ -82,6 +121,11 @@ export const PRODUCTS: Product[] = [
     material: 'Dried Lavender & Premium Silk Rose',
     durability: 'Abadi & Wangi Ringan',
     image: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=900&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=85',
+    ],
     description: 'Kombinasi bunga silk rose dan dried lavender aromatik dalam kotak keranjang estetik. Menghias sudut meja kerja dengan nuansa damai.',
   },
   {
@@ -93,6 +137,11 @@ export const PRODUCTS: Product[] = [
     material: 'Silk Flower & Preserved Foliage',
     durability: 'Abadi / Anti Pudar',
     image: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=900&q=85',
+    ],
     description: 'Perpaduan mawar artificial bernuansa terracotta, burnt orange, dan daun eucalyptus kering untuk kesan rustic elegan yang hangat.',
   },
   {
@@ -106,6 +155,11 @@ export const PRODUCTS: Product[] = [
     material: 'Plush Doll & Premium Silk Rose',
     durability: 'Abadi / Kenangan Wisuda',
     image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85',
+    ],
     description: 'Buket wisuda komplit dengan boneka toga mini berbulu lembut dan mawar artificial abadi, lengkap dengan selempang nama custom.',
   }
 ];

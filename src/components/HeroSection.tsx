@@ -116,15 +116,15 @@ export function HeroSection() {
                 </svg>
               </div>
 
-              {/* Buket Bunga Utama dalam Wadah Ice Cream Cone / Vase Waffle */}
+              {/* Buket Bunga Berbentuk Hati Utama */}
               <div className="relative w-[300px] sm:w-[380px] h-[370px] sm:h-[450px] z-10 -mb-4 animate-float-slow">
                 <Image
-                  src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=800&q=85"
-                  alt="Pink Daisy Cone Bouquet"
+                  src="/hero-bouquet.png"
+                  alt="Heart Shaped Floral Arrangement"
                   fill
                   priority
                   sizes="(max-width: 1024px) 90vw, 450px"
-                  className="object-contain object-bottom drop-shadow-lg"
+                  className="object-contain object-bottom drop-shadow-xl"
                 />
               </div>
 
