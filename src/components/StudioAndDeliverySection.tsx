@@ -1,86 +1,126 @@
-import { ShieldCheck, Sparkles, Send, Heart, PackageCheck, Palette } from 'lucide-react';
-
 export function StudioAndDeliverySection() {
   return (
-    <section id="delivery-info" className="py-12 sm:py-16 md:py-24 border-t border-stone-200/80 bg-white">
+    <section id="delivery-info" className="py-16 sm:py-24 bg-[#FCFBF9] border-t border-stone-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Heading */}
-        <div className="max-w-2xl mb-10 sm:mb-14">
-          <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-[#E60067] block mb-1">
-            Kelebihan Bunga Artificial
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-serif font-medium text-stone-900 tracking-tight">
-            Kenapa Memilih Buket Bunga Buatan Florea?
-          </h2>
-          <p className="text-stone-600 text-xs sm:text-sm mt-2 leading-relaxed">
-            Menghadirkan pesona visual anggun layaknya bunga segar dengan ketahanan abadi tanpa repot disiram atau diberi nutrisi.
-          </p>
+        {/* Bagian 1: Kelebihan Bunga Artificial - Editorial Row Layout */}
+        <div className="mb-20 sm:mb-24">
+          {/* Header Minimalis & Elegan */}
+          <div className="max-w-3xl mb-12 sm:mb-16">
+            <p className="text-[11px] sm:text-xs font-medium tracking-[0.2em] text-[#E60067] uppercase mb-3">
+              Kelebihan Bunga Artificial
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900 tracking-tight leading-snug">
+              Kenapa Memilih Buket Bunga Buatan Florea?
+            </h2>
+            <p className="text-xs sm:text-sm text-stone-600 mt-3 leading-relaxed max-w-2xl">
+              Pesona visual anggun setara bunga segar dengan ketahanan abadi—tanpa perlu repot disiram, diganti air, atau diberi nutrisi.
+            </p>
+          </div>
+
+          {/* Row List / Column Borders yang Terbuka & Bersih (Anti AI Card Box) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-stone-200 border-y border-stone-200">
+            {/* Poin 1 */}
+            <div className="py-7 md:py-8 md:pr-8 lg:pr-10 first:pt-6 md:first:pt-8 flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-mono font-medium text-stone-400 block mb-3">
+                  01
+                </span>
+                <h3 className="text-base sm:text-lg font-serif font-semibold text-stone-900 mb-2">
+                  Kenang-Kenangan Abadi
+                </h3>
+                <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed">
+                  Buket kelulusan atau hadiah momen spesial tidak akan layu, mencokelat, ataupun rontok. Bentuk dan warnanya tetap terjaga rapi di ruang kamar atau meja kerja Anda.
+                </p>
+              </div>
+            </div>
+
+            {/* Poin 2 */}
+            <div className="py-7 md:py-8 md:px-8 lg:px-10 flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-mono font-medium text-stone-400 block mb-3">
+                  02
+                </span>
+                <h3 className="text-base sm:text-lg font-serif font-semibold text-stone-900 mb-2">
+                  Sentuhan Real-Touch Sutra
+                </h3>
+                <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed">
+                  Bukan bahan plastik kaku. Kami mengombinasikan kain sutra sintetis grade A dengan gradasi kelopak realistis serta tangkai yang luwes dan alami saat disentuh.
+                </p>
+              </div>
+            </div>
+
+            {/* Poin 3 */}
+            <div className="py-7 md:py-8 md:pl-8 lg:pl-10 last:pb-6 md:last:pb-8 flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-mono font-medium text-stone-400 block mb-3">
+                  03
+                </span>
+                <h3 className="text-base sm:text-lg font-serif font-semibold text-stone-900 mb-2">
+                  Aman Pengiriman Luar Kota
+                </h3>
+                <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed">
+                  Dikirim menggunakan double-wall box kokoh dengan dudukan penahan bentuk. Siap dikirim ke seluruh wilayah tanpa kekhawatiran buket penyok atau rusak.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* 3 Keunggulan Utama */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pb-12 sm:pb-16 border-b border-stone-200">
-          <div className="space-y-2.5 p-5 rounded-2xl bg-[#FAF8F5] border border-stone-200/70 hover:border-stone-400 transition-all duration-200 hover:-translate-y-1">
-            <span className="text-[11px] font-mono font-semibold text-[#E60067]">01 / MEMORI ABADI</span>
-            <h3 className="text-base font-serif font-semibold text-stone-900">
-              Kenang-Kenangan Selamanya
-            </h3>
-            <p className="text-xs text-stone-600 leading-relaxed">
-              Buket wisuda dan kado ulang tahun Anda tidak akan pernah layu, kering, atau kecokelatan. Tetap cantik menghiasi kamar tidur atau rak pajangan.
+        {/* Bagian 2: Tentang Studio Florea */}
+        <div id="about-studio" className="pt-4 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Kolom Kiri */}
+          <div className="lg:col-span-5 space-y-3.5">
+            <p className="text-[11px] sm:text-xs font-medium tracking-[0.2em] uppercase text-stone-400">
+              Studio Florist Terkurasi
             </p>
-          </div>
-
-          <div className="space-y-2.5 p-5 rounded-2xl bg-[#FAF8F5] border border-stone-200/70 hover:border-stone-400 transition-all duration-200 hover:-translate-y-1">
-            <span className="text-[11px] font-mono font-semibold text-[#E60067]">02 / KAIN SUTRA PREMIUM</span>
-            <h3 className="text-base font-serif font-semibold text-stone-900">
-              Sentuhan Lembut Real Touch
-            </h3>
-            <p className="text-xs text-stone-600 leading-relaxed">
-              Dibuat dari kain silk bermutu tinggi dengan gradasi kelopak halus dan tangkai lentur, bebas dari kesan kaku plastik murah.
-            </p>
-          </div>
-
-          <div className="space-y-2.5 p-5 rounded-2xl bg-[#FAF8F5] border border-stone-200/70 hover:border-stone-400 transition-all duration-200 hover:-translate-y-1">
-            <span className="text-[11px] font-mono font-semibold text-[#E60067]">03 / PACKING SAFETY BOX</span>
-            <h3 className="text-base font-serif font-semibold text-stone-900">
-              Aman Kirim Ke Seluruh Kota
-            </h3>
-            <p className="text-xs text-stone-600 leading-relaxed">
-              Dikemas menggunakan double-wall box kokoh dengan penyangga anti-penyok, siap dikirim ke seluruh Indonesia tanpa risiko bunga layu.
-            </p>
-          </div>
-        </div>
-
-        {/* Tentang Studio Florea */}
-        <div id="about-studio" className="pt-12 sm:pt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-5">
-            <span className="text-xs font-semibold uppercase tracking-widest text-stone-400">
-              Studio Florist Terpercaya
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-serif font-medium text-stone-900 mt-1 mb-4">
+            <h3 className="text-2xl sm:text-3xl font-serif text-stone-900 tracking-tight">
               Florea Bouquet Studio
             </h3>
-            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed mb-4">
-              Florea Bouquet adalah studio perangkai buket bunga buatan (artificial) & preserved floral terkurasi. Kami memadukan seni wrapping Korea yang manis & clean dengan bahan silk grade A untuk kado paling berkesan.
+            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed pt-1">
+              Kami memadukan estetika Korean wrapping bergaya minimalis dengan kurasi material floral sintetis terbaik. Setiap buket dirangkai rapi secara personal untuk menghadirkan kado berkesan yang tak lekang waktu.
             </p>
-            <div className="flex items-center gap-2.5 text-xs font-medium text-stone-800">
-              <ShieldCheck className="w-4 h-4 text-[#E60067]" />
-              <span>Bisa Request Kombinasi Warna Kertas Wrap & Kartu Ucapan Custom</span>
-            </div>
+            <p className="text-xs text-stone-500 pt-2 border-l-2 border-[#E60067] pl-3">
+              Menerima kustomisasi warna wrapping, pita satin, serta pencetakan kartu ucapan personal.
+            </p>
           </div>
 
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-4">
-            <div className="p-4 sm:p-5 bg-[#FAF8F5] rounded-2xl border border-stone-200 hover:border-stone-300 transition">
-              <span className="text-xl sm:text-2xl font-serif font-bold text-stone-900">100% Abadi</span>
-              <p className="text-xs text-stone-500 mt-1">Bebas Air & Tanpa Perawatan</p>
+          {/* Kolom Kanan: Key Values */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-6 pt-4 lg:pt-0">
+            <div className="space-y-1.5 pb-5 sm:pb-0 border-b sm:border-b-0 sm:border-r border-stone-200 sm:pr-6">
+              <span className="text-2xl sm:text-3xl font-serif text-stone-900 block font-light">
+                100%
+              </span>
+              <h4 className="text-xs font-semibold text-stone-800 tracking-wide">
+                Bebas Perawatan
+              </h4>
+              <p className="text-xs text-stone-500 leading-relaxed">
+                Tanpa perlu disiram air dan tidak sensitif terhadap suhu ruangan.
+              </p>
             </div>
-            <div className="p-4 sm:p-5 bg-[#FAF8F5] rounded-2xl border border-stone-200 hover:border-stone-300 transition">
-              <span className="text-xl sm:text-2xl font-serif font-bold text-stone-900">Bebas Alergi</span>
-              <p className="text-xs text-stone-500 mt-1">Aman Tanpa Serbuk Sari</p>
+
+            <div className="space-y-1.5 pb-5 sm:pb-0 border-b sm:border-b-0 sm:border-r border-stone-200 sm:px-6">
+              <span className="text-2xl sm:text-3xl font-serif text-stone-900 block font-light">
+                Aman
+              </span>
+              <h4 className="text-xs font-semibold text-stone-800 tracking-wide">
+                Bebas Alergi
+              </h4>
+              <p className="text-xs text-stone-500 leading-relaxed">
+                Nir-serbuk sari, aman untuk ruang sensitif seperti kamar tidur atau RS.
+              </p>
             </div>
-            <div className="p-4 sm:p-5 bg-[#FAF8F5] rounded-2xl border border-stone-200 hover:border-stone-300 transition col-span-2 sm:col-span-1">
-              <span className="text-xl sm:text-2xl font-serif font-bold text-stone-900">Custom Ready</span>
-              <p className="text-xs text-stone-500 mt-1">Bebas Request Warna Wrap</p>
+
+            <div className="space-y-1.5 sm:pl-6">
+              <span className="text-2xl sm:text-3xl font-serif text-stone-900 block font-light">
+                Kustom
+              </span>
+              <h4 className="text-xs font-semibold text-stone-800 tracking-wide">
+                Personalized
+              </h4>
+              <p className="text-xs text-stone-500 leading-relaxed">
+                Fleksibel request nuansa warna wrap dan isi pesan kartu.
+              </p>
             </div>
           </div>
         </div>
